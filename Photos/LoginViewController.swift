@@ -34,6 +34,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Don't show the activity spinner just yet
         activitySpinner.stopAnimating()
+        
+        // Remove the text field keyboards when tapping the background
+        let tapGesture = UITapGestureRecognizer(target: self, action: "resignTextFieldsAsFirstResponders")
+        self.view.addGestureRecognizer(tapGesture)
+        
     }
     
     // Handler for login button presses, validate and submit the login
