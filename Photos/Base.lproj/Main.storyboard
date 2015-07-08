@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8G3-MJ-DSg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
     </dependencies>
@@ -21,10 +21,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="mdx-9O-h47">
             <objects>
-                <viewController id="8G3-MJ-DSg" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="8G3-MJ-DSg" customClass="LoginViewController" customModule="Photos" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Cr-PB-Kz0"/>
                         <viewControllerLayoutGuide type="bottom" id="mQK-rS-qAZ"/>
@@ -68,7 +68,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3W9-xf-auu">
                                 <rect key="frame" x="20" y="349" width="560" height="42"/>
@@ -80,7 +80,13 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.083425048769999996" green="0.73080413509999997" blue="0.51089570240000004" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginButtonPressed" destination="8G3-MJ-DSg" eventType="touchUpInside" id="5Ti-ok-bet"/>
+                                </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="UgY-GD-9tE">
+                                <rect key="frame" x="290" y="147" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.083425048768728818" green="0.73080413510101017" blue="0.51089570242113969" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -98,12 +104,14 @@
                             <constraint firstItem="3OW-Wl-1Ft" firstAttribute="top" secondItem="Ku8-WK-s3r" secondAttribute="bottom" constant="8" id="WIq-Md-KH4"/>
                             <constraint firstAttribute="trailing" secondItem="3W9-xf-auu" secondAttribute="trailing" constant="20" id="Whg-Xj-q2K"/>
                             <constraint firstItem="PXR-oq-btQ" firstAttribute="leading" secondItem="l72-P3-0I1" secondAttribute="leading" constant="20" id="ate-EK-iEC"/>
+                            <constraint firstItem="UgY-GD-9tE" firstAttribute="top" secondItem="YD6-A4-gW1" secondAttribute="bottom" constant="30" id="aud-ej-TNk"/>
                             <constraint firstAttribute="trailing" secondItem="FPM-rS-lUn" secondAttribute="trailing" constant="20" id="duy-9t-Cuy"/>
                             <constraint firstItem="3W9-xf-auu" firstAttribute="top" secondItem="3OW-Wl-1Ft" secondAttribute="bottom" constant="21" id="ewG-Fx-8ww"/>
                             <constraint firstItem="FPM-rS-lUn" firstAttribute="top" secondItem="YD6-A4-gW1" secondAttribute="bottom" constant="58" id="ham-PT-zt7"/>
                             <constraint firstItem="3W9-xf-auu" firstAttribute="leading" secondItem="l72-P3-0I1" secondAttribute="leading" constant="20" id="i4n-52-hwK"/>
                             <constraint firstItem="FPM-rS-lUn" firstAttribute="leading" secondItem="l72-P3-0I1" secondAttribute="leading" constant="20" id="kbg-y6-lIB"/>
                             <constraint firstItem="3OW-Wl-1Ft" firstAttribute="leading" secondItem="l72-P3-0I1" secondAttribute="leading" constant="20" id="pLA-Qv-UBI"/>
+                            <constraint firstItem="UgY-GD-9tE" firstAttribute="centerX" secondItem="l72-P3-0I1" secondAttribute="centerX" id="tsm-vm-BY2"/>
                             <constraint firstItem="YD6-A4-gW1" firstAttribute="top" secondItem="6Cr-PB-Kz0" secondAttribute="bottom" constant="50" id="wcN-3D-dRS"/>
                             <constraint firstItem="FPM-rS-lUn" firstAttribute="top" secondItem="6Cr-PB-Kz0" secondAttribute="bottom" constant="155" id="y5b-hN-Q1a"/>
                             <constraint firstAttribute="trailing" secondItem="YD6-A4-gW1" secondAttribute="trailing" constant="196" id="zdf-ms-bBp"/>
@@ -119,10 +127,16 @@
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="activitySpinner" destination="UgY-GD-9tE" id="1TG-je-zav"/>
+                        <outlet property="emailAddressTextField" destination="PXR-oq-btQ" id="cRd-Bg-fkS"/>
+                        <outlet property="loginButton" destination="3W9-xf-auu" id="jPa-Rz-fBy"/>
+                        <outlet property="passwordTextField" destination="3OW-Wl-1Ft" id="0Hn-Dj-KQv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3zi-fB-7wE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1176" y="359"/>
+            <point key="canvasLocation" x="440" y="999"/>
         </scene>
     </scenes>
 </document>

@@ -14,6 +14,7 @@
 		386C02891B4DA32700D6E328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 386C02871B4DA32700D6E328 /* LaunchScreen.storyboard */; };
 		386C02941B4DA32700D6E328 /* PhotosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C02931B4DA32700D6E328 /* PhotosTests.swift */; };
 		386C029F1B4DA32700D6E328 /* PhotosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C029E1B4DA32700D6E328 /* PhotosUITests.swift */; };
+		386C02AD1B4DAA7D00D6E328 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386C02AC1B4DAA7D00D6E328 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		386C029A1B4DA32700D6E328 /* PhotosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		386C029E1B4DA32700D6E328 /* PhotosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosUITests.swift; sourceTree = "<group>"; };
 		386C02A01B4DA32700D6E328 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		386C02AC1B4DAA7D00D6E328 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				386C027E1B4DA32700D6E328 /* AppDelegate.swift */,
 				386C02801B4DA32700D6E328 /* ViewController.swift */,
+				386C02AC1B4DAA7D00D6E328 /* LoginViewController.swift */,
 				386C02821B4DA32700D6E328 /* Main.storyboard */,
 				386C02851B4DA32700D6E328 /* Assets.xcassets */,
 				386C02871B4DA32700D6E328 /* LaunchScreen.storyboard */,
@@ -255,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				386C02AD1B4DAA7D00D6E328 /* LoginViewController.swift in Sources */,
 				386C02811B4DA32700D6E328 /* ViewController.swift in Sources */,
 				386C027F1B4DA32700D6E328 /* AppDelegate.swift in Sources */,
 			);
