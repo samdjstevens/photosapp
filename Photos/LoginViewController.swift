@@ -70,10 +70,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // Delegate method for the text fields, called when the Return button is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        
         // If the text field is the email address (identified by the tag)
         // then set the password field to be focused and exit
-        if textField.tag == 0 {
+        if textField === emailAddressTextField {
             return passwordTextField.becomeFirstResponder()
         }
         
