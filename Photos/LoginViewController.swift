@@ -27,8 +27,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         
-        // Set the password field's delagate to self so we can handle
+        // Set the text field's delagates to self so we can handle
         // the textFieldShouldReturn method
+        emailAddressTextField.delegate = self
         passwordTextField.delegate = self
         
         // Don't show the activity spinner just yet
@@ -66,10 +67,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Delegate method for the password text field, called when the "Return" button is pressed.
+    // Delegate method for the text fields, called when the Return button is pressed.
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         
-        // Trigger the loginButtonPressed method to simulate 
+        
+        // If the text field is the email address (identified by the tag)
+        // then set the password field to be focused and exit
+        if textField.tag == 0 {
+            return passwordTextField.becomeFirstResponder()
+        }
+        
+        
+        // Otherwise, trigger the loginButtonPressed method to simulate
         // submitting the form
         loginButtonPressed()
         
