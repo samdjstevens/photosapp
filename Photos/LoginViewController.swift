@@ -81,7 +81,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return passwordTextField.becomeFirstResponder()
         }
         
-        
         // Otherwise, trigger the loginButtonPressed method to simulate
         // submitting the form
         loginButtonPressed()
@@ -93,16 +92,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // is currently the first responder. Resigning a text field as first
     // responder puts away the keyboard and defocuses.
     func resignTextFieldsAsFirstResponders() {
-        
-        // Resign the email address text field if its the first responder
-        if emailAddressTextField.isFirstResponder() {
-            emailAddressTextField.resignFirstResponder()
-        }
-        
-        // Resign the password text field if its the first responder
-        if passwordTextField.isFirstResponder() {
-            passwordTextField.resignFirstResponder()
-        }
+        // Resign all/any first responders in the view
+        view.endEditing(true)
     }
     
     // Helper method to display a popup alert, used to indicate something is wrong to the user.
