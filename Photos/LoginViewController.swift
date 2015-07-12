@@ -44,7 +44,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // Handler for login button presses, validate and submit the login
     // form
     @IBAction func loginButtonPressed() {
-     
         
         // Resign the current text field as first responder, if any
         // are
@@ -68,8 +67,44 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.enabled = false
         loginButton.enabled = false
         
-        // Dismiss the VC for now
-        dismissViewControllerAnimated(true, completion: nil)
+        // Attempt to retrieve an access token from the API, sending the email and password
+        // TODO: Encrypt email and password before send
+        let accessTokenRequestData = ["email_address": emailAddressTextField.text!, "password": passwordTextField.text!]
+        let accessTokenRequest = PhotosAPIPostRequest(endPoint: "/auth/token", requestData: accessTokenRequestData)
+        accessTokenRequest.send { (response: [String: AnyObject]?, error: NSError?) in
+            
+            
+            // Hide the activity spinner
+            self.activitySpinner.stopAnimating()
+            
+            // If there was an error with the request...
+            guard error == nil else {
+                
+                // Clear the password field
+                self.passwordTextField.text? = ""
+                
+                // Re-enable the fields and button
+                self.emailAddressTextField.enabled = true
+                self.passwordTextField.enabled = true
+                self.loginButton.enabled = true
+                
+                // Check if the error is due to invalid email/password by looking
+                // at the error domain and response status code
+                if error!.domain == "PhotosAPIResponseError" && error!.code == 403 {
+                    
+                    // Display an alert informing the user that the combination was invalid
+                    return self.displayAlert("Incorrect email/password", message: "That email address and password combination is incorrect.", confirmText: "Try again")
+                    
+                }
+                
+                // Otherwise, some other sort of error has occurred on the server
+                return self.displayAlert("Unknown Error", message: "Something went wrong, but we don't know what.", confirmText: "Try again")
+            }
+            
+            
+            // Successful login! Just dismiss the VC for now
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     // Delegate method for the text fields, called when the Return button is pressed.
@@ -91,13 +126,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // Resign the current first responder text field if a text field
     // is currently the first responder. Resigning a text field as first
     // responder puts away the keyboard and defocuses.
-    func resignTextFieldsAsFirstResponders() {
+    private func resignTextFieldsAsFirstResponders() {
         // Resign all/any first responders in the view
         view.endEditing(true)
     }
     
     // Helper method to display a popup alert, used to indicate something is wrong to the user.
-    func displayAlert(title: String, message: String, confirmText: String) {
+    private func displayAlert(title: String, message: String, confirmText: String) {
         
         // Create a new UIAlertController instance
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
