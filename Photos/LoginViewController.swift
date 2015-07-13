@@ -102,7 +102,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             
             
-            // Successful login! Just dismiss the VC for now
+            // Successful login! Get our access token to be used to authenticate requests
+
+            // Check that we have an access token returned, displaying an alert if not
+            guard let accessToken = response?["access_token"] else {
+
+                // Re-enable the fields and button
+                self.emailAddressTextField.enabled = true
+                self.passwordTextField.enabled = true
+                self.loginButton.enabled = true
+
+                // The response was fine, but we couldnt find the access token in the body...
+                return self.displayAlert("Unknown Error", message: "Failed to fetch access token.", confirmText: "Try again")
+            }
+
+
+            // We have an access token. Save to the keychain (TODO) and dismiss the VC
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
